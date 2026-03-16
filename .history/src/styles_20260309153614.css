@@ -1,0 +1,169 @@
+body{
+  background:#121212;
+  color:white;
+  font-family:Arial, Helvetica, sans-serif;
+  margin:0;
+}
+
+/* MAIN APP LAYOUT */
+
+.app{
+  display:flex;
+  height:100vh;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+  width:240px;
+  background:#000;
+  padding:20px;
+}
+
+/* MAIN CONTENT */
+
+.main{
+  flex:1;
+  padding:30px;
+  overflow:auto;
+}
+
+/* PLAYLIST GRID */
+
+.albums{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,180px);
+  gap:20px;
+}
+
+/* PLAYLIST CARD */
+
+.album{
+  background:#181818;
+  padding:16px;
+  border-radius:8px;
+  transition:0.2s;
+  cursor:pointer;
+}
+
+.album:hover{
+  background:#282828;
+}
+
+.album img{
+  width:100%;
+  border-radius:6px;
+  margin-bottom:10px;
+}
+
+/* OPTIONAL PLAYLIST CARD STYLE */
+
+.playlist-card{
+  background:#181818;
+  padding:16px;
+  border-radius:8px;
+  transition:0.2s;
+  cursor:pointer;
+}
+
+.playlist-card:hover{
+  background:#282828;
+}
+
+.playlist-card img{
+  width:100%;
+  border-radius:6px;
+  margin-bottom:12px;
+}
+
+.playlist-card h3{
+  font-size:16px;
+  margin-bottom:5px;
+}
+
+.playlist-card p{
+  color:#b3b3b3;
+  font-size:14px;
+}
+
+/* SONG ROW */
+
+.song-row{
+  display:grid;
+  grid-template-columns:40px 50px 1fr 80px;
+  align-items:center;
+  gap:15px;
+  padding:10px;
+  border-radius:6px;
+}
+
+.song-row:hover{
+  background:#2a2a2a;
+}
+
+.song-row img{
+  width:40px;
+  height:40px;
+}
+
+/* PLAY BUTTON OVER ALBUM */
+
+.image-container{
+  position:relative;
+}
+
+.play-button{
+  position:absolute;
+  bottom:10px;
+  right:10px;
+  background:#1db954;
+  border:none;
+  border-radius:50%;
+  width:45px;
+  height:45px;
+  color:white;
+  font-size:18px;
+  display:none;
+}
+
+.playlist-card:hover .play-button{
+  display:block;
+}
+
+/* PLAYER BAR */
+
+.player{
+  position:fixed;
+  bottom:0;
+  left:0;
+  width:100%;
+  background:#181818;
+  height:90px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:20px;
+  border-top:1px solid #333;
+}
+
+/* PLAYER CONTROLS */
+
+.controls{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+.progress{
+  width:400px;
+  height:4px;
+  background:#444;
+  border-radius:2px;
+  margin-top:6px;
+}
+
+.progress-bar{
+  width:30%;
+  height:100%;
+  background:#1db954;
+}

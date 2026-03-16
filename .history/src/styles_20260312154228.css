@@ -1,0 +1,158 @@
+body{
+  margin:0;
+  font-family:Arial;
+  background:#121212;
+  color:white;
+}
+
+.app{
+  display:flex;
+  height:100vh;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+  width:240px;
+  background:#000;
+  padding:20px;
+  overflow:auto;
+}
+
+.logo{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+
+.sidebar p{
+  color:#b3b3b3;
+  margin:12px 0;
+  cursor:pointer;
+}
+
+.sidebar p:hover{
+  color:white;
+}
+
+.playlist-list{
+  margin-top:20px;
+}
+
+/* MAIN */
+
+.main{
+  flex:1;
+  padding:30px;
+  overflow:auto;
+  background:linear-gradient(#2b2b2b,#121212);
+}
+
+.main h1{
+  font-size:40px;
+}
+
+/* PLAYLIST GRID */
+
+.albums{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+  gap:24px;
+}
+
+.playlist-card{
+  background:#181818;
+  padding:16px;
+  border-radius:8px;
+  transition:0.2s;
+  cursor:pointer;
+}
+
+.playlist-card:hover{
+  background:#282828;
+}
+
+.playlist-card img{
+  width:100%;
+  border-radius:6px;
+}
+
+.image-container{
+  position:relative;
+}
+
+.play-button{
+  position:absolute;
+  bottom:10px;
+  right:10px;
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  border:none;
+  background:#1db954;
+  color:black;
+  font-size:18px;
+  display:none;
+}
+
+.playlist-card:hover .play-button{
+  display:block;
+}
+
+/* PLAYLIST HEADER */
+
+.playlist-header{
+  display:flex;
+  align-items:end;
+  gap:30px;
+  margin-bottom:40px;
+}
+
+.playlist-cover{
+  width:220px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.6);
+}
+
+.playlist-header h1{
+  font-size:60px;
+}
+
+/* SONG TABLE */
+
+.song-row{
+  display:grid;
+  grid-template-columns:40px 50px 1fr 1fr 80px;
+  align-items:center;
+  gap:15px;
+  padding:10px;
+  border-radius:6px;
+}
+
+.song-row:hover{
+  background:#2a2a2a;
+}
+
+.song-row img{
+  width:40px;
+}
+
+.artist{
+  color:#b3b3b3;
+  font-size:14px;
+}
+
+/* PLAYER */
+
+.player{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  height:90px;
+  background:#181818;
+  border-top:1px solid #282828;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:20px;
+}

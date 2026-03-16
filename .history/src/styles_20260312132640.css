@@ -1,0 +1,158 @@
+body{
+  margin:0;
+  font-family:Arial, Helvetica, sans-serif;
+  background:#121212;
+  color:white;
+}
+
+.app{
+  display:flex;
+  height:100vh;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+  width:240px;
+  background:#000;
+  padding:20px;
+}
+
+.sidebar h2{
+  margin-bottom:30px;
+}
+
+.sidebar p{
+  color:#b3b3b3;
+  margin:10px 0;
+  cursor:pointer;
+}
+
+.sidebar p:hover{
+  color:white;
+}
+
+/* MAIN CONTENT */
+
+.main{
+  flex:1;
+  padding:30px;
+  overflow:auto;
+  background:linear-gradient(#2b2b2b,#121212);
+}
+
+.main h1{
+  font-size:40px;
+  margin-bottom:30px;
+}
+
+/* PLAYLIST GRID */
+
+.albums{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(180px,1fr));
+  gap:24px;
+}
+.playlist-card{
+  background:#181818;
+  padding:16px;
+  border-radius:8px;
+  transition:0.2s;
+  cursor:pointer;
+}
+
+.playlist-card:hover{
+  background:#282828;
+}
+
+.playlist-card img{
+  width:100%;
+  border-radius:6px;
+  margin-bottom:10px;
+}
+
+.playlist-card h3{
+  font-size:16px;
+}
+
+.playlist-card p{
+  font-size:14px;
+  color:#b3b3b3;
+}
+
+/* SONG LIST */
+
+.song-row{
+  display:grid;
+  grid-template-columns:40px 50px 1fr 1fr 80px;
+  gap:15px;
+  align-items:center;
+  padding:10px;
+  border-radius:6px;
+}
+
+.song-row:hover{
+  background:#2a2a2a;
+}
+
+.song-row img{
+  width:40px;
+}
+
+/* PLAYER */
+
+.player{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  height:90px;
+  background:#181818;
+  border-top:1px solid #282828;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:20px;
+}
+
+.controls{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+.progress{
+  width:400px;
+  height:4px;
+  background:#444;
+  margin-top:8px;
+  border-radius:3px;
+}
+
+.progress-bar{
+  width:30%;
+  height:100%;
+  background:#1db954;
+}
+.playlist-header{
+  display:flex;
+  align-items:end;
+  gap:30px;
+  margin-bottom:40px;
+}
+
+.playlist-cover{
+  width:220px;
+  height:220px;
+  object-fit:cover;
+  box-shadow:0 10px 30px rgba(0,0,0,0.5);
+}
+
+.playlist-header h1{
+  font-size:60px;
+  margin:10px 0;
+}
+
+.song-table{
+  margin-top:20px;
+}
