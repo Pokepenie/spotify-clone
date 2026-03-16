@@ -38,4 +38,4 @@ npm run dev
 
 ## Live Demo
 
-Coming soon
+Coming soon# spotify-clone
