@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom"
+import { FaPlay } from "react-icons/fa"
 
 export default function PlaylistCard({playlist}){
 
@@ -19,7 +20,7 @@ export default function PlaylistCard({playlist}){
         />
 
         <button className="play-button">
-          ▶
+          <FaPlay style={{ marginLeft: 2 }} />
         </button>
 
       </div>

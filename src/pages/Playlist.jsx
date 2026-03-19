@@ -3,31 +3,54 @@ import { useParams } from "react-router-dom"
 import { getPlaylist } from "../api/spotify"
 
 import Sidebar from "../components/Sidebar"
-import Player from "../components/Player"
 import SongRow from "../components/SongRow"
+import Topbar from "../components/Topbar"
 
-export default function Playlist({ deviceId }) {
+async function getDominantColor(imgUrl) {
+  return new Promise((resolve) => {
+    const img = new Image()
+    img.crossOrigin = "anonymous"
+    img.onload = () => {
+      const canvas = document.createElement("canvas")
+      canvas.width = 50
+      canvas.height = 50
+      const ctx = canvas.getContext("2d")
+      ctx.drawImage(img, 0, 0, 50, 50)
+      const data = ctx.getImageData(0, 0, 50, 50).data
+      let r = 0, g = 0, b = 0
+      const total = data.length / 4
+      for (let i = 0; i < data.length; i += 4) {
+        r += data[i]
+        g += data[i + 1]
+        b += data[i + 2]
+      }
+      resolve(`rgb(${Math.floor(r / total)},${Math.floor(g / total)},${Math.floor(b / total)})`)
+    }
+    img.onerror = () => resolve("#333")
+    img.src = imgUrl
+  })
+}
+
+export default function Playlist() {
 
   const { id } = useParams()
   const [playlist, setPlaylist] = useState(null)
+  const [bgColor, setBgColor] = useState("#333")
 
   useEffect(() => {
 
     async function load() {
       try {
-
         const token = localStorage.getItem("token")
-
         const data = await getPlaylist(token, id)
-
-        console.log("PLAYLIST:", data)
-
         setPlaylist(data)
-
+        const imgUrl = data.images?.[0]?.url
+        if (imgUrl) {
+          const color = await getDominantColor(imgUrl)
+          setBgColor(color)
+        }
       } catch (err) {
-
         console.error("PLAYLIST ERROR:", err)
-
       }
     }
 
@@ -37,7 +60,7 @@ export default function Playlist({ deviceId }) {
 
   if (!playlist) return <p>Loading...</p>
 
-  const songs = playlist.items?.items || playlist.tracks?.items || []
+  const songs = playlist.tracks?.items || playlist.items?.items || []
 
   return (
 
@@ -45,53 +68,54 @@ export default function Playlist({ deviceId }) {
 
       <Sidebar />
 
-      <div className="main">
+      <div className="main" style={{
+        background: `linear-gradient(to bottom, ${bgColor} 0%, #121212 450px)`
+      }}>
+
+        <Topbar />
 
         <div className="playlist-header">
 
           <img
-            src={playlist.images?.[0]?.url}
+            src={playlist.images?.[0]?.url || ""}
             className="playlist-cover"
           />
 
           <div>
-
-            <p className="playlist-type">Playlist</p>
-
             <h1>{playlist.name}</h1>
-
             <p className="playlist-meta">
-              {songs.length} songs
+              {playlist.tracks?.total || playlist.items?.total || songs.length} songs
             </p>
-
           </div>
 
         </div>
 
         <div className="song-table">
 
-{songs
-  .filter(item => item && item.track && item.track.album)
-  .map((item,i)=>{
+          <div className="song-table-header">
+            <span>#</span>
+            <span></span>
+            <span>Title</span>
+            <span>Album</span>
+            <span>⏱</span>
+          </div>
 
-    const track = item.track
+          {songs.map((item, i) => {
+            const track = item?.track || item?.item || item
+            if (!track?.uri) return null
+            return (
+              <SongRow
+                key={track.id || i}
+                track={track}
+                index={i}
+                contextUri={playlist.uri}
+              />
+            )
+          })}
 
-    return(
-      <SongRow
-        key={track.id || i}
-        track={track}
-        index={i}
-        deviceId={deviceId}
-      />
-    )
-
-})}
-
-</div>
+        </div>
 
       </div>
-
-      <Player />
 
     </div>
 
