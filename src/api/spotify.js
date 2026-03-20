@@ -1,5 +1,5 @@
 const CLIENT_ID = import.meta.env.VITE_SPOTIFY_CLIENT_ID
-const REDIRECT_URI = "http://127.0.0.1:5173"
+const REDIRECT_URI = import.meta.env.VITE_REDIRECT_URI || "http://127.0.0.1:5173"
 
 const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
 
